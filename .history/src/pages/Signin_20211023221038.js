@@ -6,9 +6,11 @@ import {
     signInWithPopup,
     getAdditionalUserInfo,
   } from 'firebase/auth';
-import {Alert,Button, Col, Container,Grid,Icon,Panel,Row} from 'rsuite';
-import { ref, serverTimestamp, set } from 'firebase/database';
-import {auth,database} from '../misc/firebase'
+import {Button, Col, Container,Grid,Icon,Panel,Row} from 'rsuite';
+import {auth} from '../misc/firebase'
+
+
+
 
 const SignIn = () => {
     
@@ -19,10 +21,10 @@ const signInWithProvider = async (provider) => {
         const userMeta = getAdditionalUserInfo(credential);
   
         if (userMeta.isNewUser) {
-          await set(ref(database, `/profiles/${credential.user.uid}`).set ({
+          await set(ref(database, `/profiles/${credential.user.uid}`), {
             name: credential.user.displayName,
             createdAt: serverTimestamp(),
-          }));
+          });
         }
   
         Alert.success('Signed in', 4000);
@@ -30,7 +32,7 @@ const signInWithProvider = async (provider) => {
         Alert.error(err.message, 4000);
       }
     };  
-    
+};
 const onFacebookSignIn = () => {
     signInWithProvider(new FacebookAuthProvider());
   };
@@ -39,7 +41,7 @@ const onFacebookSignIn = () => {
     signInWithProvider(new GoogleAuthProvider());
   };
 
-    return (
+return (
         <Container>
           <Grid className="mt-page">
         <Row>
