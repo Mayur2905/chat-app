@@ -12,8 +12,12 @@ const PublicRoute = ({children, ...routProps}) => {
     </Container>
     }
 
-   if(profile && isLoding){
-       return<Redirect to="/"/>
+   if(!profile && isLoding){
+       return<Redirect to="/signin"/>
+   }
+
+   if(profile){
+       return<Redirect to="/Home"/>
    }
 
     return (
