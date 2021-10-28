@@ -25,7 +25,7 @@ const Dashboard = ({onSignOut}) => {
             name="nickname"
             initialValue = {profile.name}
             onSave={onSave}
-            label ={<h6 className = "mb-2">Nickname</h6>}
+            lable ={<h6 className = "mb-2">Nickname</h6>}
         />
         </Drawer.Body>
         <Drawer.Footer>

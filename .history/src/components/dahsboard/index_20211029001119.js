@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
 import { Button, Divider, Drawer } from 'rsuite'
 import { useProfile } from '../../context/profile.context'
@@ -6,9 +5,7 @@ import Editableinput from '../Editableinput';
 
 const Dashboard = ({onSignOut}) => {
     const {profile} = useProfile();
-    const onSave = async newData=>{
-        console.log(newData);
-    }
+    const onSave =(newData)=>{}
 
 
     return (
@@ -25,7 +22,7 @@ const Dashboard = ({onSignOut}) => {
             name="nickname"
             initialValue = {profile.name}
             onSave={onSave}
-            label ={<h6 className = "mb-2">Nickname</h6>}
+            lable ={<h6 className = "mb-2">Nickname</h6>}
         />
         </Drawer.Body>
         <Drawer.Footer>
