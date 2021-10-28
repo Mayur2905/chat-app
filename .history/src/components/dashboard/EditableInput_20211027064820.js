@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Dashboard = () => {
+const EditableInput = () => {
     return (
         <div>
-            hello
+           hello 
         </div>
     )
 }
 
-export default Dashboard
+export default EditableInput;

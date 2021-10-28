@@ -1,18 +1,15 @@
 import React from 'react'
-import DashboardToggle from './dashboard/DashboardToggle'
-
+import DashboardToggle from './dahsboard/DashboardToggle'
 
 const Sidebar = () => {
     return (
-        <div className="h-100 pt-2">
-            
-        <div>
+        <div className="h-100 pt-2" >
+            <div>
             <DashboardToggle/>
-        </div>
+            </div>
         bottom
-
         </div>
     )
 }
 
-export default Sidebar
+export default Sidebar;

@@ -1,71 +1,53 @@
-/* eslint-disable no-unused-vars */
 import React from 'react'
-import {
-    GoogleAuthProvider,
-    FacebookAuthProvider,
-    signInWithPopup,
-    getAdditionalUserInfo,
-  } from 'firebase/auth';
-import {Alert,Button, Col, Container,Grid,Icon,Panel,Row} from 'rsuite';
-import { ref, serverTimestamp, set } from 'firebase/database';
-import {auth,database} from '../misc/firebase'
+import firebase from 'firebase/app';
+import { Alert, Button, Col, Container, Grid, Icon } from 'rsuite'
+import { auth, database } from '../misc/firebase'
 
 const SignIn = () => {
-    
-const signInWithProvider = async (provider) => {
-    
-    try {
-        const credential = await signInWithPopup(auth, provider);
-        const userMeta = getAdditionalUserInfo(credential);
-  
-        if (userMeta.isNewUser) {
-          await set(ref(database, `/profiles/${credential.user.uid}`).set ({
-            name: credential.user.displayName,
-            createdAt: serverTimestamp(),
-          }));
+    const signInWithProvider = async(provider)=>{
+        try{
+            const {additionalUserInfo,user} = await auth.signInWithPopup(provider);
+            if(additionalUserInfo.isNewUser){
+                database.ref(`/profiles/${user.uid}`).set({
+                    name:user.displayName,
+                    createdAt:firebase.database.ServerValue.TIMESTAMP
+                })
+            }
+            
+            
+            Alert.success('Signed in',4000)
+        }catch(err){
+            Alert.error(err.message,4000);
         }
-  
-        Alert.success('Signed in', 4000);
-      } catch (err) {
-        Alert.error(err.message, 4000);
-      }
-    };  
-    
-const onFacebookSignIn = () => {
-    signInWithProvider(new FacebookAuthProvider());
-  };
 
-  const onGoogleSignIn = () => {
-    signInWithProvider(new GoogleAuthProvider());
-  };
+    }
+    const onFacebookSignin=()=>{
+        signInWithProvider(new firebase.auth.FacebookAuthProvider() )
+    };
+    const onGoogleSignin=()=>{
+        signInWithProvider(new firebase.auth.GoogleAuthProvider())
+    };
 
     return (
         <Container>
-          <Grid className="mt-page">
-        <Row>
-          <Col xs={24} md={12} mdOffset={6}>
-            <Panel>
-              <div className="text-center">
-                <h2>Welcome to Chat</h2>
-                <p>Progressive chat platform for neophytes</p>
-              </div>
-
-              <div className="mt-3">
-                <Button block color="blue" onClick={onFacebookSignIn}>
-                  <Icon icon="facebook" /> Continue with Facebook
-                </Button>
-
-                <Button block color="green" onClick={onGoogleSignIn}>
-                  <Icon icon="google" /> Continue with Google
-                </Button>
-              </div>
-            </Panel>
-          </Col>
-        </Row>
-      </Grid>
+            <Grid className="mt-page">
+                <Col xs={24} md={12} mdOffset={6}>
+                    <div className="text-center">
+                        <h2>Welcome to Chat</h2>
+                        <p>Progressive chat platform for neophytes</p>
+                    </div>
+                    <div className="mt-3">
+                        <Button block color='blue' onClick={onFacebookSignin}>
+                            <Icon icon='facebook' /> Continue with Facebook
+                        </Button>
+                        <Button block color='red' onClick={onGoogleSignin}>
+                            <Icon icon='google' /> Continue with Google
+                        </Button>
+                    </div>
+                </Col>
+            </Grid>
         </Container>
-        
-    );
-};
+    )
+}
 
-export default SignIn;
+export default SignIn
