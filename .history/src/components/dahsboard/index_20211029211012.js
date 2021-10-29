@@ -3,7 +3,7 @@ import React from 'react'
 import { Alert, Button, Divider, Drawer } from 'rsuite'
 import { useProfile } from '../../context/profile.context'
 import Editableinput from '../Editableinput';
-import {database} from "../../misc/firebase";
+import {database} from "../../misc/firebase"
 
 const Dashboard = ({onSignOut}) => {
     const {profile} = useProfile();
