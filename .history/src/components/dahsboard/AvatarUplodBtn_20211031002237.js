@@ -11,7 +11,6 @@ const AvatarUplodBtn = () => {
     const { isOpen,open,close}=useModalState();
     const {profile} = useProfile();
     const [img,setImg] = useState(null);
-    const [isLoading,setIsLoading]=useState(false)
     const avatarEditorRef= useRef();
 
     const acceptedFileTypes =['image/png', 'image/jpeg','image/pjpg'];
@@ -47,7 +46,6 @@ const AvatarUplodBtn = () => {
     const onUploadClick=async () =>{
             const canvas = avatarEditorRef.current.getImageScaledToCanvas();
 
-            setIsLoading(true);
             try{
               const blob = await getBlob(canvas);
               const avatarFileRef = storage.ref(`/profile/${profile.uid}`).child('avatar')
@@ -58,11 +56,9 @@ const AvatarUplodBtn = () => {
                 const downloadUrl = await uploadAvatarResult.ref.getDownloadURL()
                 const userAvatarRef = database.ref(`/profiles/${profile.uid}`).child('avatar');
 
-                userAvatarRef.set(downloadUrl);
-                setIsLoading(false)
+                await userAvatarRef.set(downloadUrl);
                 Alert.info('avatar has been uploaded',4000);
             }catch (err){
-                setIsLoading(false)
                 Alert.error(err.message,4000)
 
             }
@@ -100,7 +96,7 @@ const AvatarUplodBtn = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button block appearance="ghost" onClick={onUploadClick}disabled={isLoading}>
+                    <Button block appearance="ghost" onClick={onUploadClick}>
                         Upload New Avatar
                     </Button>
                 </Modal.Footer>

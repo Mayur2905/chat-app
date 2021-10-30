@@ -58,11 +58,9 @@ const AvatarUplodBtn = () => {
                 const downloadUrl = await uploadAvatarResult.ref.getDownloadURL()
                 const userAvatarRef = database.ref(`/profiles/${profile.uid}`).child('avatar');
 
-                userAvatarRef.set(downloadUrl);
-                setIsLoading(false)
+                await userAvatarRef.set(downloadUrl);
                 Alert.info('avatar has been uploaded',4000);
             }catch (err){
-                setIsLoading(false)
                 Alert.error(err.message,4000)
 
             }
@@ -100,7 +98,7 @@ const AvatarUplodBtn = () => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button block appearance="ghost" onClick={onUploadClick}disabled={isLoading}>
+                    <Button block appearance="ghost" onClick={onUploadClick}>
                         Upload New Avatar
                     </Button>
                 </Modal.Footer>
