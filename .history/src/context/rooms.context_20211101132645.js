@@ -4,13 +4,13 @@ import { transformToArrwithId } from "../misc/helpers";
 
 
 
-const RoomsContext = createContext();
+const RoomContext = createContext();
 
 export const RoomsProvider =({children}) => {
     const[rooms,setRooms] = useState(null);
     useEffect(()=>
     {
-        const roomListRef = database.ref('rooms');
+        const roomListRef = database.ref('room');
 
         roomListRef.on('value',(snap)=>{
             const data = transformToArrwithId(snap.val())
@@ -21,7 +21,7 @@ export const RoomsProvider =({children}) => {
         }
     },[]);
 
-    return <RoomsContext.Provider value={rooms}>{children}</RoomsContext.Provider>
+    return <RoomContext.Provider value={rooms}>{children}</RoomContext.Provider>
 };
  
-export const useRooms =()=>useContext(RoomsContext);
+export const useRooms =()=> useContext(RoomContext);

@@ -3,7 +3,6 @@ import TimeAgo from 'timeago-react';
 
 
 const RoomItem = ({room}) => {
-    
     const{createdAt,name}=room;
     return (
         <div>
