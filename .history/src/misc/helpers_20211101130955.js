@@ -7,7 +7,7 @@ export function getFunctionInitials(name) {
     return splitName[0][0];
 }
 
-export function transformToArrwithId(snapVal){
+export function transformToArrwithid(snapVal){
     return snapVal ? Object.keys(snapVal).map(roomId => {
         return{...snapVal[roomId],id:roomId};
     })

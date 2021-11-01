@@ -1,4 +1,3 @@
-/* eslint-disable import/named */
 import React from 'react'
 import { Col, Grid, Row } from 'rsuite';
 import Sidebar from '../components/Sidebar'
