@@ -24,7 +24,7 @@ const Chat = () => {
     }
     
     return (
-        <>
+        <div>
             <div className='chat-top'>
                 <ChatTop /> 
             </div>
@@ -34,7 +34,7 @@ const Chat = () => {
             <div className='chat-bottom'>
                 <ChatBottom/>
             </div>
-        </>
+        </div>
     )
 };
 export default Chat;

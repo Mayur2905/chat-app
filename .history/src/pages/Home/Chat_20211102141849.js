@@ -19,12 +19,12 @@ const Chat = () => {
 
     const currentRoom = rooms.find(room =>room.id === chatId);
 
-    if(!currentRoom){
+    if(currentRoom){
         return<h6 className="text-center mt-page">Chat {chatId} not found </h6>
     }
     
     return (
-        <>
+        <div>
             <div className='chat-top'>
                 <ChatTop /> 
             </div>
@@ -34,7 +34,7 @@ const Chat = () => {
             <div className='chat-bottom'>
                 <ChatBottom/>
             </div>
-        </>
+        </div>
     )
 };
 export default Chat;
