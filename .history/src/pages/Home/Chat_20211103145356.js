@@ -5,7 +5,7 @@ import { useRooms } from '../../context/rooms.context';
 import Messages from '../../components/chat-window/messages';
 import ChatTop from '../../components/chat-window/top';
 import ChatBottom from '../../components/chat-window/bottom';
-import { CurrentRoomProvider } from '../../context/current.room.context';
+import { currentRoomProvider } from '../../context/current.room.context';
 
 
 const Chat = () => {
@@ -26,10 +26,10 @@ const Chat = () => {
     const currentRoomData={
         name,description
     };
-
+    
 
     return (
-        <CurrentRoomProvider data={currentRoomData}>
+        <currentRoomProvider data={currentRoomData}>
             <div className='chat-top'>
                 <ChatTop /> 
             </div>
@@ -39,7 +39,7 @@ const Chat = () => {
             <div className='chat-bottom'>
                 <ChatBottom/>
             </div>
-        </CurrentRoomProvider>
+        </currentRoomProvider>
     )
 };
 export default Chat;

@@ -9,6 +9,6 @@ const Top = () => {
             {name}
         </div>
     )
-};
+}
 
 export default memo(Top);
