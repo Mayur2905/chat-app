@@ -9,13 +9,13 @@ const {StringType} =Schema.Types;
 
 const model=Schema.Model({
     name:StringType().isRequired('Chat name is required'),
-    Discription:StringType().isRequired('Description  is required')
+    Discription:StringType().isRequired('Discription  is required')
 });
 
 
 const INITIAL_FORM ={
     name:'',
-    Discription:'',
+    description:'',
 };
 
 
@@ -68,13 +68,13 @@ const CreateRoomBtnModal = () =>
                     ref = {formRef}>
                         <FormGroup>
                             <ControlLabel>Room Name</ControlLabel>
-                            <FormControl name="name" placeholder="Enter Chat Room Name.."/>
+                            <FormControl name="name" palceholder="Enter Chat Room Name.."/>
                         </FormGroup>
                         <FormGroup>
                         <ControlLabel>Discription</ControlLabel>
                         <FormControl componentClass="textarea" row={5} 
                         name="Discription"
-                        placeholder="Enter Chat Room Discription.."/>
+                        palceholder="Enter Chat Room Discription.."/>
                         </FormGroup>
                     </Form>
                 </Modal.Body>

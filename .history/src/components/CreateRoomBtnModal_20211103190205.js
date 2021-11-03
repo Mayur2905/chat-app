@@ -9,13 +9,13 @@ const {StringType} =Schema.Types;
 
 const model=Schema.Model({
     name:StringType().isRequired('Chat name is required'),
-    Discription:StringType().isRequired('Description  is required')
+    Discription:StringType().isRequired('Discription  is required')
 });
 
 
 const INITIAL_FORM ={
     name:'',
-    Discription:'',
+    description:'',
 };
 
 

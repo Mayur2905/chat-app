@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ButtonToolbar, Icon } from 'rsuite';
 import { useCurrentRoom } from '../../../context/current.room.context'
 import { useMediaQuery } from '../../../misc/custom-hooks';
-import RoomInfoBtnModal from './RoomInfoBtnModal';
+import RoominfoBtnModal from './RoominfoBtnModal';
 
 const Top = () => {
     const name = useCurrentRoom(v => v.name);
@@ -20,7 +20,7 @@ const Top = () => {
             </div>
             <div className="d-flex justify-content-between align-items-center">
                 <span>todo</span>
-                <RoomInfoBtnModal/>
+                <RoominfoBtnModal/>
             </div>
         </div>
     
